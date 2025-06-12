@@ -22,6 +22,7 @@
 	padding 1em
 	box-sizing border-box
 	background: url('./Enderstone.png') center repeat
+	text-align center
 	text-transform uppercase
 	font-size 2em
 	font-weight bold

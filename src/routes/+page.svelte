@@ -1,6 +1,8 @@
-<script>
+<script lang=ts>
 	const title = 'mc.grawl.ru'
 	const description = 'Личный сервер Minecraft'
+	const status: Promise<{ online: boolean }> = fetch('https://api.mcsrvstat.us/3/mc.grawl.ru')
+		.then(response => response.json())
 </script>
 <svelte:head>
 	<title>{title}</title>
@@ -9,6 +11,17 @@
 <section class=root>
 	<h1>{title}</h1>
 	<p>{description}</p>
+	<p>
+		{#await status}
+			…
+		{:then response}
+			{#if response.online}
+				<span style='color: green'>online</span>
+			{:else}
+				<span style='color: red'>offline</span>
+			{/if}
+		{/await}
+	</p>
 	<a href="https://t.me/mcgrawlru">Telegram</a>
 </section>
 <style lang=stylus>
